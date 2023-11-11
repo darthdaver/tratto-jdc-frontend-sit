@@ -1,7 +1,7 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const api = {
-    exportDBUrl: () => `${BASE_URL}/export`,
+    exportDBUrl: (userId) => `${BASE_URL}/export/${userId}`,
     getAllrepositoriesUrl: () => `${BASE_URL}/repositories`,
     getRepositoryUrl: (idRepository) => `${BASE_URL}/repositories/${idRepository}`,
     getWholeRepositoryUrl: (idRepository) => `${BASE_URL}/repositories/${idRepository}/whole`,

@@ -520,7 +520,7 @@ function App() {
 
     const exportDB = async () => {
         axios
-            .get(api.exportDBUrl(), { responseType: 'blob' })
+            .get(api.exportDBUrl(currentUser._id), { responseType: 'blob' })
             .then((response) => {
                 saveAs(response.data, 'db.zip');
             }).catch((error) => {
