@@ -618,7 +618,7 @@ function App() {
                                     deleteButtonCallback={deleteRepositoryClass}
                                 />
                                 <List
-                                    label="JDoctor Conditions"
+                                    label="Methods"
                                     identifier="jdc"
                                     selected={ currentJDoctorCondition ? currentJDoctorCondition._id : null }
                                     elements={ currentRepositoryClass && Object.values(currentRepositoryClass.repositoryClass.jDoctorConditions).map(j => {
