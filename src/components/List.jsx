@@ -55,7 +55,7 @@ export default function List({ label, identifier, selected, elements, onClickCal
                                         <div key={ e._id } className="list-row">
                                             <span className="list-row-name" style={ selected && selected == e._id ? { color: "rgba(226, 119, 122, 1)" } : null } onClick={() => { onClickCallback(e._id) }}>{e.name}</span>
                                             {
-                                                PERMIT != "student" && !e.description &&
+                                                (PERMIT != "student" || (["pre", "post", "throws"].includes(identifier))) && !e.description &&
                                                 <button className="delete-button" onClick={() => { deleteButtonCallback(e._id) } }><TiDelete color="#e2777a" size={25} /></button>
                                             }
                                         </div>

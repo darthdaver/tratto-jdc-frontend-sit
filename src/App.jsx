@@ -70,12 +70,9 @@ function App() {
         console.log("useEffect []");
 
         if (!isAuthOpen) {
-            console.log("entro");
             axios
                 .get(api.getAllrepositoriesUrl())
                 .then((repositories) => {
-                    console.log("repositories");
-                    console.log(repositories);
                     if (repositories.length > 0) {
                         const repositoriesCacheDict = repositories.reduce((acc, r) => {
                             return {
@@ -125,10 +122,7 @@ function App() {
         };
 
         if (!isAuthOpen) {
-            console.log("entro");
             getRepositories().then((repositories) => {
-                console.log("repositories");
-                console.log(repositories);
                 if (repositories.length > 0) {
                     const repositoriesCacheDict = repositories.reduce((acc, r) => {
                         return {
@@ -367,9 +361,6 @@ function App() {
                             _id: response.data._id,
                             name: response.data.name
                         });
-                        console.log("Repository class uploaded.");
-                        console.log(idx++);
-                        console.log(response.data);
                         uploadedRepositoryClasses[response.data._id] = {
                             repositoryClass: response.data,
                             jDoctorConditions: {}
@@ -520,7 +511,7 @@ function App() {
 
     const exportDB = async () => {
         axios
-            .get(api.exportDBUrl(currentUser._id), { responseType: 'blob' })
+            .get(api.exportDBUrl(currentUser.user._id), { responseType: 'blob' })
             .then((response) => {
                 saveAs(response.data, 'db.zip');
             }).catch((error) => {
@@ -547,9 +538,7 @@ function App() {
                 password: formAuth.password
             })
             .then((response) => {
-                console.log("prima qui")
                 setIsAuthOpen(false);
-                console.log("e qui")
                 setCurrentUser(response.data);
             })
             .catch((error) => {
