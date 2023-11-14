@@ -113,7 +113,7 @@ export default function ConditionContainer({ classname, title, identifier, condi
                             identifier={ identifier }
                             addCondition={ (formData) => { addCondition(formData) } }
                             disableProperties={{
-                                description: (value) => { return value == "" },
+                                description: (value) => { return true; /*value == ""*/ },
                                 condition: (value) => { return value == "" },
                                 exception: identifier == "throws" ? (value) => { return value == "" } : (value) => { return false; } ,
                                 oracle: identifier == "post" ? (value) => { return value == "" } : (value) => { return false; }
