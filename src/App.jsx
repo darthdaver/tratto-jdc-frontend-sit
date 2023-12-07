@@ -69,37 +69,6 @@ function App() {
     useEffect(  () => {
         console.log("useEffect []");
 
-        if (!isAuthOpen) {
-            axios
-                .get(api.getAllrepositoriesUrl())
-                .then((repositories) => {
-                    if (repositories.length > 0) {
-                        const repositoriesCacheDict = repositories.reduce((acc, r) => {
-                            return {
-                                ...acc,
-                                [`${r._id}`]: {
-                                    repository: r,
-                                    repositoryClasses: {},
-                                }
-                            }
-                        }, {});
-                        setCache((prevState) => {
-                            return {
-                                ...prevState,
-                                repositories: repositoriesCacheDict
-                            }
-                        });
-                        setCurrentRepository(repositoriesCacheDict[Object.keys(repositoriesCacheDict)[0]]);
-                    } else {
-                        setCurrentRepository(null);
-                    }
-            });
-        }
-    }, []);
-
-    useEffect(  () => {
-        console.log("useEffect []");
-
         async function getRepositories() {
             let repositories = [];
             if (import.meta.env.VITE_PERMIT == "student") {
@@ -113,7 +82,8 @@ function App() {
                 }
             } else {
                 try {
-                    repositories = await axios.get(api.getAllrepositoriesUrl());
+                    const result = await axios.get(api.getAllrepositoriesUrl());
+                    repositories = result.data;
                 } catch (err) {
                     console.log(err);
                 }
